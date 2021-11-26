@@ -21,7 +21,7 @@ Starting from **11.0.0**, `jest-preset-angular` introduces a few extra changes t
 
 - Upgrade the project to **Angular 13** following https://update.angular.io/
 
-- If one is using the default preset as following:
+- If you have the default preset as following:
 
 ```js
 // jest.config.js
@@ -30,9 +30,9 @@ module.exports = {
 };
 ```
 
-there are no migration steps required
+there are no migration steps required.
 
-- If one is **NOT** having `preset: 'jest-preset-angular'` in Jest config, the config needs to be updated with new values for
+- If you do **NOT** have `preset: 'jest-preset-angular'` in the Jest config, then it needs to be updated with new values for
   `resolver`, `transformIgnorePatterns` and `transform`:
 
 ```js
@@ -53,13 +53,13 @@ module.exports = {
 ### `Cannot find modules` error when importing any deep paths from Angular ESM format packages
 
 - Angular 13 ESM package format makes Jest resolution not able to resolve the correct `.mjs` files. Even though we introduced
-  `ng-jest-resolver` as a part of the preset, this resolver won't work for all scenarios. One might get Jest error like
+  `ng-jest-resolver` as a part of the preset, this resolver won't work for all scenarios. You might get Jest error similar to this:
 
 ```
 Cannot find module '@angular/common/locales/xx' from 'src/app/app.component.spec.ts'
 ```
 
-To fix this issue, one needs to add `mjs` to `moduleFileExtensions` as following
+To fix this issue, add `mjs` to `moduleFileExtensions` as following
 
 ```js
 // jest.config.js
@@ -69,8 +69,8 @@ module.exports = {
 };
 ```
 
-If the issue still **persists**, you might need to configure [moduleNameMapper](https://jestjs.io/docs/configuration#modulenamemapper-objectstring-string--arraystring)
-or extend the behavior the default [resolver](https://github.com/thymikee/jest-preset-angular/blob/main/src/resolvers/ng-jest-resolver.ts) of this preset.
+If the issue **persists**, you might need to configure [moduleNameMapper](https://jestjs.io/docs/configuration#modulenamemapper-objectstring-string--arraystring)
+or extend the preset's default behaviour [resolver](https://github.com/thymikee/jest-preset-angular/blob/main/src/resolvers/ng-jest-resolver.ts).
 
 ### Usage with Angular libraries which are built with Angular CLI 13
 
@@ -78,7 +78,7 @@ Besides, the changes in Angular packages themselves, **Angular** libraries which
 ESM package format. Similar to Angular packages, Jest doesn't understand `.mjs` files which are in these new format
 libraries in Jest **CommonJS** mode.
 
-To fix this issue, one should modify `transformIgnorePatterns` to be as following:
+To fix this issue, change `transformIgnorePatterns` to be as follows:
 
 ```js
 // jest.config.js
